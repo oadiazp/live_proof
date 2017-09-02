@@ -1,0 +1,78 @@
+{% extends 'frontend/base.html' %}
+{% load pipeline %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load socialaccount %}
+
+{% block css %}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    {% stylesheet 'login' %}
+{% endblock %}
+
+{% block js %}
+    {% javascript 'login' %}
+{% endblock %}
+
+{% block title %} {% trans 'Social login' %} {% endblock %}
+
+{% block content %}
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>{% trans 'Live proof' %}</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">{% trans 'Sign in to start your session' %}</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group has-feedback">
+                    {% trans 'E-mail' as placeholder %}
+                    {% render_field form.login class='form-control' placeholder=placeholder %}
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    {% trans 'Password' as placeholder %}
+                    {% render_field form.password class='form-control' placeholder=placeholder %}
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                {% render_field form.remember %} {% trans 'Remember me' %}
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button class="btn btn-primary btn-block btn-flat">
+                            {% trans 'Sign in' %}
+                        </button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+            <div class="social-auth-links text-center">
+                <p>- {% trans 'OR' %} -</p>
+                <a href="{% provider_login_url 'facebook' %}"
+                   class="btn btn-block btn-social btn-facebook btn-flat"><i
+                        class="fa fa-facebook"></i>{% trans 'Sign in using Facebook' %}</a>
+                <a href="{% provider_login_url 'google' %}"
+                   class="btn btn-block btn-social btn-google btn-flat"><i
+                        class="fa fa-google-plus"></i>{% trans 'Sign in using Google+' %}</a>
+            </div>
+            <!-- /.social-auth-links -->
+
+            <a href="{% url 'account_reset_password' %}">{% trans 'I forgot my password' %}</a><br>
+            <a href="{% url 'account_signup' %}" class="text-center">
+                {% trans 'Register a new membership' %}
+            </a>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+{% endblock %}

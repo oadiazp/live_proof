@@ -37,6 +37,15 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'apps.api',
+    'apps.frontend',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'pipeline',
+    'widget_tweaks',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,7 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,3 +138,64 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'npm.finders.NpmFinder',
+    'pipeline.finders.PipelineFinder',
+)
+
+PIPELINE = {
+    'STYLESHEETS': {
+        'libraries': {
+            'source_filenames': (
+              'node_modules/bootstrap/dist/css/bootstrap.css',
+              'node_modules/admin-lte/dist/css/AdminLTE.css',
+            ),
+            'output_filename': 'css/libraries.css',
+        },
+        'login': {
+            'source_filenames': (
+              'node_modules/admin-lte/plugins/iCheck/square/blue.css',
+            ),
+            'output_filename': 'css/login.css',
+        },
+    },
+    'JAVASCRIPT': {
+        'libraries': {
+            'source_filenames': (
+              'node_modules/jquery/dist/jquery.js',
+              'node_modules/bootstrap/dist/js/bootstrap.js',
+            ),
+            'output_filename': 'js/libraries.js',
+        },
+        'login': {
+            'source_filenames': (
+              'node_modules/admin-lte/plugins/iCheck/icheck.js',
+              'coffee/login.js',
+            ),
+            'output_filename': 'js/login.js',
+        }
+    }
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
