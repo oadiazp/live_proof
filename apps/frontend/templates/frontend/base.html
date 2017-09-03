@@ -1,18 +1,49 @@
 {% load i18n %}
 {% load pipeline %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% trans 'Live proof' %} | {% block title %} {% endblock %}</title>
+    <title>{% trans 'Live Proof' %} | {% block title %} {% endblock %}</title>
     {% stylesheet 'libraries' %}
     {% block css %} {% endblock %}
 </head>
-<body>
-    {% block content %} {% endblock %}
+<body class="{% block body_class %}{% endblock %}">
+<header class="main-header">
+    <nav class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="../../index2.html"
+                   class="navbar-brand"><b>{% trans 'Live Proof' %}</b></a>
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
 
-    {% javascript 'libraries' %}
-    {% block js %} {% endblock %}
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        {% include 'frontend/login/_authenticated.html' %}
+                    {% else %}
+                        {% include 'frontend/login/_non_authenticated.html' %}
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>
+
+
+{% block content %}
+
+{% endblock %}
+
+{% javascript 'libraries' %}
+{% block js %} {% endblock %}
 </body>
 </html>

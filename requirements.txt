@@ -4,3 +4,5 @@ django-allauth==0.33.0
 django-pipeline==1.6.13
 django-npm==1.0.0
 django-widget-tweaks==1.4.1
+django-bootstrap3==9.0.0
+django-debug-toolbar==1.8

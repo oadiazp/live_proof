@@ -1,27 +1,24 @@
-{% extends 'frontend/base.html' %}
+{% extends 'frontend/base_auth.html' %}
 {% load pipeline %}
 {% load i18n %}
 {% load widget_tweaks %}
 {% load socialaccount %}
 
-{% block css %}
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    {% stylesheet 'login' %}
-{% endblock %}
-
 {% block js %}
     {% javascript 'login' %}
 {% endblock %}
 
-{% block title %} {% trans 'Social login' %} {% endblock %}
+{% block css %}
+    {{ block.super }}
+    {% stylesheet 'login' %}
+{% endblock %}
+
+{% block title %} {% trans 'Login' %} {% endblock %}
 
 {% block content %}
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>{% trans 'Live proof' %}</b></a>
+            <a href="#"><b>{% trans 'Live Proof' %}</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">

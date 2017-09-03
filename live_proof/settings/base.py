@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'pipeline',
     'widget_tweaks',
+    'bootstrap3',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
+    'debug_toolbar',
 ]
 
 SITE_ID = 1
@@ -66,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'live_proof.urls'
@@ -160,6 +164,7 @@ PIPELINE = {
             'source_filenames': (
               'node_modules/bootstrap/dist/css/bootstrap.css',
               'node_modules/admin-lte/dist/css/AdminLTE.css',
+              'node_modules/admin-lte/dist/css/skins/_all-skins.css',
             ),
             'output_filename': 'css/libraries.css',
         },
@@ -199,3 +204,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
+INTERNAL_IPS = ['127.0.0.1']
