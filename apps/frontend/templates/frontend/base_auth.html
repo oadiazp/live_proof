@@ -1,7 +1,4 @@
 {% extends 'frontend/base.html' %}
-{% load pipeline %}
-{% load bootstrap3 %}
-{% load i18n %}
 
 {% block css %}
     <link rel="stylesheet"
@@ -12,18 +9,5 @@
 
 {% block body_class %}
     skin-blue layout-top-nav hold-transition login-page
-{% endblock %}
-
-{% block content %}
-    <form method="post" class="form">
-        1232132132112312
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% buttons %}
-            <button class="btn btn-primary">
-                {% bootstrap_icon "star" %} {% trans 'Submit' %}
-            </button>
-        {% endbuttons %}
-    </form>
 {% endblock %}
 

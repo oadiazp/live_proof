@@ -1,0 +1,17 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+<form method="post" class="form">
+    {% csrf_token %}
+    <div class="login-box">
+        <div class="login-box-body">
+            <h3 class="login-box-msg">{{ form_title }}</h3>
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button class="btn btn-primary">
+                    {% bootstrap_icon "star" %} {% trans 'Submit' %}
+                </button>
+            {% endbuttons %}
+        </div>
+    </div>
+</form>

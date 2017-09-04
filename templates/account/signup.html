@@ -1,0 +1,9 @@
+{% extends 'account/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% trans 'Sign up' as form_title %}
+    {% include 'frontend/_form.html' with form_title=form_title %}
+{% endblock %}
+
+{% block title %} {% trans 'Sign up' %} {% endblock  %}
