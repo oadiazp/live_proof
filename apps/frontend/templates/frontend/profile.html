@@ -1,0 +1,45 @@
+{% extends 'frontend/base.html' %}
+{% load i18n %}
+{% load pipeline %}
+
+{% block content %}
+    <script language="vuejs/tmplang" id="social_network_icon_template">
+        <li>
+            <i class="fa [[ css_class_icon ]]"></i>
+        </li>
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 profile">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img :src="picture" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <ul v-for="social_network in social_networks">
+                            <social_network_icon :social_network="social_network"></social_network_icon>
+                        </ul>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="{% url 'socialaccount_connections' %}">
+                                    <span class="fa fa-plus fa-fw" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {% javascript 'profile' %}
+{% endblock %}
+
+{% block title %}
+    {% trans 'Profile' %}
+{% endblock %}
+
+{% block body_class %} skin-blue layout-top-nav {% endblock %}

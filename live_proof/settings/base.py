@@ -32,7 +32,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,6 +46,7 @@ INSTALLED_APPS = [
     'pipeline',
     'widget_tweaks',
     'bootstrap3',
+    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -93,7 +93,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'live_proof.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -103,7 +102,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -123,7 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -137,12 +134,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -162,34 +160,44 @@ PIPELINE = {
     'STYLESHEETS': {
         'libraries': {
             'source_filenames': (
-              'node_modules/bootstrap/dist/css/bootstrap.css',
-              'node_modules/admin-lte/dist/css/AdminLTE.css',
-              'node_modules/admin-lte/dist/css/skins/_all-skins.css',
+                'node_modules/bootstrap/dist/css/bootstrap.css',
+                'node_modules/admin-lte/dist/css/AdminLTE.css',
+                'node_modules/admin-lte/dist/css/skins/_all-skins.css',
+                'sass/main.css',
             ),
             'output_filename': 'css/libraries.css',
         },
         'login': {
             'source_filenames': (
-              'node_modules/admin-lte/plugins/iCheck/square/blue.css',
+                'node_modules/admin-lte/plugins/iCheck/square/blue.css',
             ),
             'output_filename': 'css/login.css',
-        },
+        }
     },
     'JAVASCRIPT': {
         'libraries': {
             'source_filenames': (
-              'node_modules/jquery/dist/jquery.js',
-              'node_modules/bootstrap/dist/js/bootstrap.js',
+                'node_modules/jquery/dist/jquery.js',
+                'node_modules/bootstrap/dist/js/bootstrap.js',
             ),
             'output_filename': 'js/libraries.js',
         },
         'login': {
             'source_filenames': (
-              'node_modules/admin-lte/plugins/iCheck/icheck.js',
-              'coffee/login.js',
+                'node_modules/admin-lte/plugins/iCheck/icheck.js',
+                'coffee/login.js',
             ),
             'output_filename': 'js/login.js',
-        }
+        },
+        'profile': {
+            'source_filenames': (
+                'node_modules/vue/dist/vue.js',
+                'coffee/base.js',
+                'coffee/social_network_icon.js',
+                'coffee/profile.js',
+            ),
+            'output_filename': 'js/profile.js',
+        },
     }
 }
 
@@ -202,6 +210,28 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
+    },
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4',
     }
 }
 

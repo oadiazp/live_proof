@@ -7,13 +7,15 @@
 <head>
     <meta charset="UTF-8">
     <title>{% trans 'Live Proof' %} | {% block title %} {% endblock %}</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"/>
     {% stylesheet 'libraries' %}
     {% block css %} {% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
 <header class="main-header">
     <nav class="navbar navbar-static-top">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <a href="../../index2.html"
                    class="navbar-brand"><b>{% trans 'Live Proof' %}</b></a>

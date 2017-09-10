@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -42,3 +43,13 @@ class LiveProof(TimeStampedModel):
     proofed = models.BooleanField(default=False)
 
     insurance = models.ForeignKey(Insurance)
+
+
+class Profile(TimeStampedModel):
+    picture = models.FileField(upload_to='pictures')
+
+    user = models.OneToOneField(User)
+
+
+from .signals import *  # noqa
+

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Insurance, LiveProof, Channel, Destination
+from .models import Insurance, LiveProof, Channel, Destination, Profile
 
 
 class LiveProofInline(admin.TabularInline):
@@ -22,3 +22,5 @@ class ChannelAdmin(admin.ModelAdmin):
 @admin.register(Destination)
 class DestinationAdmin(admin.ModelAdmin):
     list_display = ('name', 'insurance', 'channel',)
+
+admin.site.register(Profile)

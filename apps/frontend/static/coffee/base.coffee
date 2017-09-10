@@ -1,0 +1,2 @@
+@BaseController =
+  delimiters: ['[[', ']]']
