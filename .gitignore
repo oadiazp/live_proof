@@ -22,3 +22,4 @@ bower_components
 /static/
 node_modules/
 *.js
+htmlcov/
