@@ -1,5 +1,27 @@
 .profile img {
   width: 100px;
+  margin-top: 20px;
+  float: right; }
+.profile li {
+  float: left;
+  font-size: 25px; }
+.profile ul {
+  margin-top: 50px; }
+.profile .names {
   margin-top: 20px; }
+
+.insurances ul {
+  margin-top: 25px; }
+.insurances .insurance-border {
+  border: 1px solid;
+  margin-bottom: 10px; }
+.insurances button {
+  margin-top: 50px; }
+.insurances .gray_date {
+  color: grey;
+  font-style: italic; }
+
+.align-right {
+  float: right; }
 
 /*# sourceMappingURL=main.css.map */

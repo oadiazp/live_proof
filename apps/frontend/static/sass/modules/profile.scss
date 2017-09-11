@@ -2,5 +2,39 @@
   img {
     width: 100px;
     margin-top: 20px;
+    float: right;
+  }
+
+  li {
+    float: left;
+    font-size: 25px;
+  }
+
+  ul {
+    margin-top: 50px;
+  }
+
+  .names {
+    margin-top: 20px;
+  }
+}
+
+.insurances {
+  ul {
+    margin-top: 25px;
+  }
+
+  .insurance-border {
+    border: 1px solid;
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin-top: 50px;
+  }
+
+  .gray_date {
+    color: grey;
+    font-style: italic;
   }
 }

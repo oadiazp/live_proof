@@ -1,3 +1,4 @@
+from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -17,6 +18,10 @@ class Insurance(TimeStampedModel, StringOverridedModel):
     enabled = models.BooleanField(default=False)
 
     channels = models.ManyToManyField('Channel', through='Destination')
+    profile = models.ForeignKey('Profile')
+
+    class Meta:
+        ordering = ('created',)
 
 
 CHANNEL_TYPE = NamedChoices((
@@ -50,6 +55,11 @@ class Profile(TimeStampedModel):
 
     user = models.OneToOneField(User)
 
+    @property
+    def associated_social_network_accounts(self):
+        return SocialAccount.objects.filter(
+            user=self.user
+        )
 
 from .signals import *  # noqa
 

@@ -192,8 +192,10 @@ PIPELINE = {
         'profile': {
             'source_filenames': (
                 'node_modules/vue/dist/vue.js',
+                'node_modules/moment/moment.js',
                 'coffee/base.js',
                 'coffee/social_network_icon.js',
+                'coffee/insurance.js',
                 'coffee/profile.js',
             ),
             'output_filename': 'js/profile.js',

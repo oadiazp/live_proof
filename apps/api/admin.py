@@ -5,7 +5,7 @@ from .models import Insurance, LiveProof, Channel, Destination, Profile
 
 class LiveProofInline(admin.TabularInline):
     model = LiveProof
-    fields = ('proofed', 'created',)
+    fields = ('proofed',)
 
 
 @admin.register(Insurance)

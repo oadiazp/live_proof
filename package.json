@@ -12,6 +12,8 @@
     "admin-lte": "^2.3.11",
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
+    "moment": "^2.18.1",
+    "momentjs": "^2.0.0",
     "vue": "^2.4.2"
   }
 }
