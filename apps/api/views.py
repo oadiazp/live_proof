@@ -2,8 +2,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from .models import Profile, Insurance
-from .serializers import ProfileSerializer, InsuranceSerializer
+from .models import Profile, Insurance, Destination
+from .serializers import ProfileSerializer, InsuranceSerializer, \
+    DestinationSerializer
 
 
 class ProfileView(APIView):
@@ -23,4 +24,13 @@ class InsuranceViewSet(ModelViewSet):
     def get_queryset(self):
         return Insurance.objects.filter(
             profile__user__username=self.request.user.username
+        )
+
+
+class DestinationViewSet(ModelViewSet):
+    serializer_class = DestinationSerializer
+
+    def get_queryset(self):
+        return Destination.objects.filter(
+            insurance__id=self.kwargs['pk']
         )

@@ -21,6 +21,9 @@
   color: grey;
   font-style: italic; }
 
+.modal .add_destination {
+  font-size: 25px; }
+
 .align-right {
   float: right; }
 

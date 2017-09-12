@@ -3,7 +3,7 @@ from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer, Serializer
 
-from apps.api.models import Profile, Insurance
+from apps.api.models import Profile, Insurance, Destination
 
 
 class SocialNetworkSerializer(Serializer):
@@ -58,3 +58,9 @@ class ProfileSerializer(ModelSerializer):
             Insurance.objects.filter(profile=obj),
             many=True
         ).data
+
+
+class DestinationSerializer(ModelSerializer):
+    class Meta:
+        model = Destination
+        fields = '__all__'

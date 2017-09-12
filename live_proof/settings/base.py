@@ -195,6 +195,8 @@ PIPELINE = {
                 'node_modules/moment/moment.js',
                 'coffee/base.js',
                 'coffee/social_network_icon.js',
+                'coffee/destination.js',
+                'coffee/insurance_modal.js',
                 'coffee/insurance.js',
                 'coffee/profile.js',
             ),

@@ -7,6 +7,8 @@
     first_name: null
     last_name: null
   methods:
+    showAddInsuranceModal: ->
+      $('#insurance_modal').modal('show')
     load: ->
       promise = new Promise (resolve, reject) ->
         $.ajax
@@ -23,6 +25,7 @@
   components:
     'social_network_icon': SocialNetworkIconController
     'insurance': InsuranceController
+    'insurance_modal': InsuranceModalController
   mounted: ->
     @load()
 
