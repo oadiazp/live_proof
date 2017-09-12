@@ -1,10 +1,14 @@
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Profile, Insurance, Destination
-from .serializers import ProfileSerializer, InsuranceSerializer, \
-    DestinationSerializer
+from .serializers import (
+    ProfileSerializer,
+    InsuranceSerializer,
+    DestinationSerializer,
+)
 
 
 class ProfileView(APIView):

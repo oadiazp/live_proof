@@ -4,3 +4,4 @@
   data: ->
     name: null
     channel: null
+    id: null

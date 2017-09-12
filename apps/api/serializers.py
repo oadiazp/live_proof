@@ -3,7 +3,7 @@ from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer, Serializer
 
-from apps.api.models import Profile, Insurance, Destination
+from .models import Profile, Insurance, Destination
 
 
 class SocialNetworkSerializer(Serializer):
