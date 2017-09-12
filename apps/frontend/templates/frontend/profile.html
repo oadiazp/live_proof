@@ -3,11 +3,12 @@
 {% load pipeline %}
 
 {% block content %}
+    {% csrf_token %}
+
     <script language="vuejs/tmplang" id="social_network_icon_template">
         <li>
             <span aria-hidden="true" :class="icon"></span>
         </li>
-
     </script>
 
     <script language="vuejs/tmlpang" id="insurance_template">
@@ -20,10 +21,10 @@
                 <div class="col-md-4">
                     <b>{% trans 'Status' %}:</b>
                     <span v-if="enabled">
-                        <a href="#">{% trans 'Disable' %}</a>
+                        <a href="#" @click.prevent="toggleStatus">{% trans 'Disable' %}</a>
                     </span>
                     <span v-else>
-                        <a href="#">{% trans 'Enable' %}</a>
+                        <a href="#" @click.prevent="toggleStatus">{% trans 'Enable' %}</a>
                     </span>
                 </div>
             </div>
@@ -102,7 +103,9 @@
                     <insurance :created_humanized="insurance.created_humanized"
                                :name="insurance.name"
                                :id="insurance.id"
-                               :enabled="insurance.enabled">
+                               :enabled="insurance.enabled"
+                               @reload="load"
+                    >
                     </insurance>
                 </ul>
             </div>
