@@ -31,12 +31,13 @@ CHANNEL = NamedChoices((
 
 class Destination(TimeStampedModel, StringOverridedModel):
     name = models.CharField(max_length=200)
-
-    insurance = models.ForeignKey(Insurance)
+    file = models.FileField(upload_to='destination_uploads')
     channel = models.CharField(
         max_length=CHANNEL.max_length,
         choices=CHANNEL
     )
+
+    insurance = models.ForeignKey(Insurance)
 
 
 class LiveProof(TimeStampedModel):

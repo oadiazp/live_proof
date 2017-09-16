@@ -9,7 +9,7 @@
   methods:
     showAddInsuranceModal: ->
       $('#insurance_modal').modal('show')
-    load: ->
+    load: -> 
       promise = new Promise (resolve, reject) ->
         $.ajax
           url: '/api/profile'

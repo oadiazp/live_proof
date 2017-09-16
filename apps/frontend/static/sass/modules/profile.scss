@@ -40,7 +40,19 @@
 }
 
 .modal {
-  .add_destination {
+  .big_icon {
     font-size: 25px;
+  }
+
+  legend {
+    font-size: 15px;
+  }
+
+  .vertical_center_icon {
+    margin-top: 5px;
+  }
+
+  input[type=file] {
+    display: none;
   }
 }

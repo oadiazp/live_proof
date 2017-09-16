@@ -9,8 +9,6 @@
         <li>
             <span aria-hidden="true" :class="icon"></span>
         </li>
-
-
     </script>
 
     <script language="vuejs/tmlpang" id="insurance_template">
@@ -46,7 +44,7 @@
         </div>
     </script>
 
-    <script id="insurance_modal_template" language="vuejs/tmplang">
+    <script language="vuejs/tmplang" id="insurance_modal_template">
         <div class="modal fade" tabindex="-1" role="dialog" id="insurance_modal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -57,9 +55,13 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <span class="align-right fa fw fa-plus-circle add_destination"
-                                      @click="addDestination"
-                                ></span>
+                                <template v-if="errors">
+                                    <div v-for="error in errors" class="alert alert-danger" role="alert">
+                                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                      <span class="sr-only">{% trans 'Error' %}:</span>
+                                      [[ error ]]
+                                    </div>
+                                </template>
                             </div>
                         </div>
 
@@ -73,37 +75,59 @@
                             <div class="col-md-4"></div>
                         </div>
 
-                        <ul v-for="destination in destinations">
-                            <destination
-                                :channel=destination.channel
-                                :name=destination.name
-                            ></destination>
-                        </ul>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="align-right fa fw fa-plus-circle big_icon"
+                                      @click="addDestination"
+                                ></span>
+                            </div>
+                        </div>
+
+                        <fieldset>
+                            <legend>{% trans 'Destinations' %}</legend>
+                            <ul v-for="(destination, index) in destinations">
+                                <destination ref="destinations" :index="index"></destination>
+                            </ul>
+                        </fieldset>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
+                        <button type="button" class="btn btn-primary"
+                                @click="save">{% trans 'Save changes' %}</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     </script>
 
-    <script language="vuejs/tmpl" id="destination_template">
+    <script language="vuejs/tmplang" id="destination_template">
         <div class="row">
             <div class="col-md-5">
                 <input v-model="name" class="form-control" placeholder="{% trans 'Destination' %}">
             </div>
-            <div class="col-md-2"></div>
             <div class="col-md-5">
-                <select v-model="channel" class="form-control"></select>
+                <select v-model="channel" class="form-control">
+                    <option value=-1 selected="selected" disabled> - {% trans 'Select channel' %} -</option>
+                    <option v-for="channel in channels" :value="channel.value"> [[ channel.text ]]</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="file" :id="file_id" @change="updateFile($event)"/>
+                <span class="fa fw fa-upload big_icon vertical_center_icon"
+                      @click="showUploadWindow"
+                >
+                </span>
+                <span class="fa fw fa-minus-circle big_icon vertical_center_icon">
+                </span>
             </div>
         </div>
     </script>
 
     <div class="container">
         <div class="row profile_controller">
-            <insurance_modal></insurance_modal>
+            <insurance_modal
+                @reload="load"
+            ></insurance_modal>
             <div class="col-md-4 profile">
                 <div class="row">
                     <div class="col-md-6">
@@ -178,6 +202,9 @@
 
 {% block js %}
     {% javascript 'profile' %}
+    <script>
+        const PROFILE_ID = {{ profile.id }};
+    </script>
 {% endblock %}
 
 {% block title %}

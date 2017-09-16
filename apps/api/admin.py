@@ -8,15 +8,15 @@ class LiveProofInline(admin.TabularInline):
     fields = ('proofed',)
 
 
+class DestinationInline(admin.TabularInline):
+    model = Destination
+    fields = ('name', 'channel', 'file',)
+
+
 @admin.register(Insurance)
-class InstanceAdmin(admin.ModelAdmin):
+class InsuranceAdmin(admin.ModelAdmin):
     list_display = ('name', 'enabled',)
-    inlines = (LiveProofInline,)
-
-
-@admin.register(Destination)
-class DestinationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'insurance', 'channel',)
+    inlines = (DestinationInline, LiveProofInline,)
 
 
 admin.site.register(Profile)

@@ -21,8 +21,14 @@
   color: grey;
   font-style: italic; }
 
-.modal .add_destination {
+.modal .big_icon {
   font-size: 25px; }
+.modal legend {
+  font-size: 15px; }
+.modal .vertical_center_icon {
+  margin-top: 5px; }
+.modal input[type=file] {
+  display: none; }
 
 .align-right {
   float: right; }

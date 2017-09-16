@@ -15,7 +15,7 @@ class InsuranceSerializer(ModelSerializer):
 
     class Meta:
         model = Insurance
-        fields = ('name', 'created_humanized', 'enabled', 'id',)
+        fields = ('name', 'created_humanized', 'enabled', 'id', 'profile')
 
     def get_created_humanized(self, obj):
         return naturaltime(obj.created)
