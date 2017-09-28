@@ -4,3 +4,5 @@ pytest
 pytest-django
 pytest-cov
 mixer
+pytest-pep8
+pytest-flakes

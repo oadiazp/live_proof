@@ -58,4 +58,3 @@ class Profile(TimeStampedModel):
         )
 
 from .signals import *  # noqa
-

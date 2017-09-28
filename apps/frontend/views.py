@@ -22,5 +22,3 @@ class ProfileView(TemplateView):
         ).first()
 
         return context
-
-
